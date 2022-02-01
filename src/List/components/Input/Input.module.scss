@@ -1,0 +1,28 @@
+.input {
+    width: 100%;
+
+    border: none;
+    outline: none;
+
+    background: rgba($color: #7e7e7e, $alpha: .2);
+
+    padding: 3px 10px;
+
+    font-size: 20px;
+    line-height: 25px;
+
+    transition: background .3s;
+
+    &:focus {
+        background: rgba($color: #7e7e7e, $alpha: .4);
+    }
+
+    &--error {
+        composes: input;
+        background: rgba(#e65151, .2);
+    }
+}
+
+.title {
+    margin-bottom: 4px;
+}

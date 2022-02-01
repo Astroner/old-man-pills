@@ -1,0 +1,19 @@
+.root {
+    width: 100%;
+    
+    background: transparent;
+
+    transition: background .3s ease-out;
+
+    font-size: 21px;
+    line-height: 40px;
+
+    border: none;
+
+    display: flex;
+    justify-content: center;
+
+    &:active {
+        background: rgba($color: #000000, $alpha: .1)
+    }
+}

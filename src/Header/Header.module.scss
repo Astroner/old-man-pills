@@ -1,0 +1,23 @@
+.root {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    
+    background-color: #fff;
+
+    line-height: 60px;
+    font-size: 40px;
+
+    padding: 0 20px;
+
+    transition: box-shadow .3s;
+
+    &--shadow {
+        composes: root;
+
+        box-shadow: 0 4px 10px rgba($color: #000000, $alpha: .2);
+    }
+}

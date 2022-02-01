@@ -1,0 +1,44 @@
+.root {
+    overflow: hidden;
+
+    transition: max-height .3s, border .3s;
+
+    &--open {
+        composes: root;
+
+        max-height: 400px;
+        border: 1px solid transparent;
+
+        .close {
+            opacity: 1;
+
+            transform: translateX(36px);
+            transition-delay: .1s;
+        }
+        .open {
+            opacity: 0;
+        }
+    }
+    &--close {
+        composes: root;
+
+        max-height: 40px;
+        border: 1px solid black;
+
+        .close {
+            opacity: 0;
+        }
+        .open {
+            opacity: 1;
+
+            transform: translateX(-47px);
+            transition-delay: .1s;
+        }
+    }
+}
+
+.close, .open {
+    display: block;
+
+    transition: transform .3s, opacity .3s;
+}
