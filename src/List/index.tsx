@@ -12,7 +12,6 @@ export interface IList {}
 const List: FC<IList> = props => {
 
     const { state, service } = useInjector(DataService);
-
     const change = useCallback((id: number, value: number) => {
         service.updateItem(id, {
             value

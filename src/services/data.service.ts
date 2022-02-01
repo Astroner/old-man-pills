@@ -29,6 +29,7 @@ export class DataService extends Injectable<IDataService> implements OnInit {
     }
 
     onInit(){
+        console.log("INIT")
         const storage = this.getInjection(StorageService);
         this.setState(
             pipe(
