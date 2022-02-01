@@ -29,22 +29,12 @@ export class DataService extends Injectable<IDataService> implements OnInit {
     }
 
     onInit(){
-        console.log("INIT")
         const storage = this.getInjection(StorageService);
         this.setState(
             pipe(
                 storage.getValue(DataService.KEY),
                 fromOption(() => new Error("NOT_INITIALIZED")),
-                chainW(parse),
-                mapLeft(() => new Error("FAILED_TO_PARSE")),
-                chainW((value): Either<Error, IDataService> => {
-                    if(typeof value === "object" && value && !(value instanceof Array) && "items" in value && value["items"] instanceof Array) {
-                        return right(value as any)
-                    }
-    
-                    return left(new Error("INVALID"))
-                }),
-                map(record => record as IDataService),
+                chainW(this.parseString),
                 getOrElseW(e => {
                     if(e.message !== "NOT_INITIALIZED") {
                         storage.remove(DataService.KEY);
@@ -85,4 +75,31 @@ export class DataService extends Injectable<IDataService> implements OnInit {
             items: prev.items.filter(item => item.id !== id)
         }))
     }
+
+    parseString(str: string): Either<Error, IDataService> {
+        return pipe(
+            parse(str),
+            mapLeft(() => new Error("FAILED_TO_PARSE")),
+            chainW((value): Either<Error, IDataService> => {
+                if(
+                    typeof value === "object" && 
+                    value && !(value instanceof Array) && 
+                    "items" in value && 
+                    value["items"] instanceof Array && 
+                    "ID" in value && 
+                    typeof value["ID"] === "number"
+                ) {
+                    return right(value as any)
+                }
+
+                return left(new Error("INVALID"))
+            }),
+            map(record => record as IDataService),
+        )
+    }
+
+    setData(data: IDataService) {
+        this.setState(data)
+    }
+
 }

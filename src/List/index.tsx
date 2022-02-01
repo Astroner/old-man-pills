@@ -6,6 +6,8 @@ import AddNew from './components/AddNew';
 import Item from './components/Item';
 
 import cn from "./List.module.scss";
+import Copy from './components/Copy';
+import Import from './components/Import';
 
 export interface IList {}
 
@@ -32,6 +34,8 @@ const List: FC<IList> = props => {
                 <Item key={item.id} {...item} onChange={change} onDelete={remove} onUpdate={update} />
             ))}
             <AddNew margin="50px 0 0" />
+            <Copy margin="50px 0 0" />
+            <Import margin="10px 0 0" />
         </div>
     )
 }

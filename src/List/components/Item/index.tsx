@@ -75,7 +75,7 @@ const Item: FC<IItem> = ({ onChange, onDelete, onUpdate, ...props }) => {
             </div>
             <div className={cn.plusses}>
                 {new Array(props.timesInADay).fill(null).map((_, i) => (
-                    <button onClick={change} disabled={i < currentDayValue || isCompleted} className={cn.plus}>
+                    <button key={i} onClick={change} disabled={i < currentDayValue || isCompleted} className={cn.plus}>
                         <Plus />
                     </button>
                 ))}
